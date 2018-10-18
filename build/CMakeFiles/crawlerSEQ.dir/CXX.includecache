@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/gabicfa/Documents/SuperComp/Projeto2/HTTPDownloader.hpp
+string
+-
+
+/home/gabicfa/Documents/SuperComp/Projeto2/main.cpp
+HTTPDownloader.hpp
+/home/gabicfa/Documents/SuperComp/Projeto2/HTTPDownloader.hpp
+fstream
+-
+iostream
+-
+string
+-
+stdio.h
+-
+curl/curl.h
+-
+boost/regex.hpp
+-
+boost/locale.hpp
+-
+fstream
+-
+

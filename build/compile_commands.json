@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/gabicfa/Documents/SuperComp/Projeto2/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-5    -g   -Wall -O2 -std=gnu++11 -o CMakeFiles/crawlerSEQ.dir/main.cpp.o -c /home/gabicfa/Documents/SuperComp/Projeto2/main.cpp",
+  "file": "/home/gabicfa/Documents/SuperComp/Projeto2/main.cpp"
+},
+{
+  "directory": "/home/gabicfa/Documents/SuperComp/Projeto2/build",
+  "command": "/usr/bin/x86_64-linux-gnu-g++-5    -g   -Wall -O2 -std=gnu++11 -o CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.o -c /home/gabicfa/Documents/SuperComp/Projeto2/HTTPDownloader.cpp",
+  "file": "/home/gabicfa/Documents/SuperComp/Projeto2/HTTPDownloader.cpp"
+}
+]
