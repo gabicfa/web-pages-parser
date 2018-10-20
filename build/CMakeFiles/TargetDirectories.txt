@@ -1,3 +1,4 @@
 /home/gabicfa/Documents/SuperComp/Projeto2/build/CMakeFiles/rebuild_cache.dir
+/home/gabicfa/Documents/SuperComp/Projeto2/build/CMakeFiles/crawlerPAR.dir
 /home/gabicfa/Documents/SuperComp/Projeto2/build/CMakeFiles/edit_cache.dir
 /home/gabicfa/Documents/SuperComp/Projeto2/build/CMakeFiles/crawlerSEQ.dir

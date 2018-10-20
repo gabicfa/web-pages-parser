@@ -57,45 +57,30 @@ include CMakeFiles/crawlerSEQ.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/crawlerSEQ.dir/flags.make
 
-CMakeFiles/crawlerSEQ.dir/main.cpp.o: CMakeFiles/crawlerSEQ.dir/flags.make
-CMakeFiles/crawlerSEQ.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gabicfa/Documents/SuperComp/Projeto2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/crawlerSEQ.dir/main.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-5  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/crawlerSEQ.dir/main.cpp.o -c /home/gabicfa/Documents/SuperComp/Projeto2/main.cpp
+CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.o: CMakeFiles/crawlerSEQ.dir/flags.make
+CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.o: ../crawlerSequencial.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gabicfa/Documents/SuperComp/Projeto2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.o"
+	/usr/bin/x86_64-linux-gnu-g++-5  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.o -c /home/gabicfa/Documents/SuperComp/Projeto2/crawlerSequencial.cpp
 
-CMakeFiles/crawlerSEQ.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/crawlerSEQ.dir/main.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gabicfa/Documents/SuperComp/Projeto2/main.cpp > CMakeFiles/crawlerSEQ.dir/main.cpp.i
+CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.i"
+	/usr/bin/x86_64-linux-gnu-g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gabicfa/Documents/SuperComp/Projeto2/crawlerSequencial.cpp > CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.i
 
-CMakeFiles/crawlerSEQ.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/crawlerSEQ.dir/main.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gabicfa/Documents/SuperComp/Projeto2/main.cpp -o CMakeFiles/crawlerSEQ.dir/main.cpp.s
-
-CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.o: CMakeFiles/crawlerSEQ.dir/flags.make
-CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.o: ../HTTPDownloader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gabicfa/Documents/SuperComp/Projeto2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.o"
-	/usr/bin/x86_64-linux-gnu-g++-5  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.o -c /home/gabicfa/Documents/SuperComp/Projeto2/HTTPDownloader.cpp
-
-CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.i"
-	/usr/bin/x86_64-linux-gnu-g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gabicfa/Documents/SuperComp/Projeto2/HTTPDownloader.cpp > CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.i
-
-CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.s"
-	/usr/bin/x86_64-linux-gnu-g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gabicfa/Documents/SuperComp/Projeto2/HTTPDownloader.cpp -o CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.s
+CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.s"
+	/usr/bin/x86_64-linux-gnu-g++-5 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gabicfa/Documents/SuperComp/Projeto2/crawlerSequencial.cpp -o CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.s
 
 # Object files for target crawlerSEQ
 crawlerSEQ_OBJECTS = \
-"CMakeFiles/crawlerSEQ.dir/main.cpp.o" \
-"CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.o"
+"CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.o"
 
 # External object files for target crawlerSEQ
 crawlerSEQ_EXTERNAL_OBJECTS =
 
-crawlerSEQ: CMakeFiles/crawlerSEQ.dir/main.cpp.o
-crawlerSEQ: CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.o
+crawlerSEQ: CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.o
 crawlerSEQ: CMakeFiles/crawlerSEQ.dir/build.make
 crawlerSEQ: CMakeFiles/crawlerSEQ.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gabicfa/Documents/SuperComp/Projeto2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable crawlerSEQ"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gabicfa/Documents/SuperComp/Projeto2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable crawlerSEQ"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/crawlerSEQ.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

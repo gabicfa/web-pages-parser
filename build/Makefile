@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named crawlerPAR
+
+# Build rule for target.
+crawlerPAR: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 crawlerPAR
+.PHONY : crawlerPAR
+
+# fast build rule for target.
+crawlerPAR/fast:
+	$(MAKE) -f CMakeFiles/crawlerPAR.dir/build.make CMakeFiles/crawlerPAR.dir/build
+.PHONY : crawlerPAR/fast
+
+#=============================================================================
 # Target rules for targets named crawlerSEQ
 
 # Build rule for target.
@@ -123,59 +136,59 @@ crawlerSEQ/fast:
 	$(MAKE) -f CMakeFiles/crawlerSEQ.dir/build.make CMakeFiles/crawlerSEQ.dir/build
 .PHONY : crawlerSEQ/fast
 
-HTTPDownloader.o: HTTPDownloader.cpp.o
+crawlerParalelo.o: crawlerParalelo.cpp.o
 
-.PHONY : HTTPDownloader.o
-
-# target to build an object file
-HTTPDownloader.cpp.o:
-	$(MAKE) -f CMakeFiles/crawlerSEQ.dir/build.make CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.o
-.PHONY : HTTPDownloader.cpp.o
-
-HTTPDownloader.i: HTTPDownloader.cpp.i
-
-.PHONY : HTTPDownloader.i
-
-# target to preprocess a source file
-HTTPDownloader.cpp.i:
-	$(MAKE) -f CMakeFiles/crawlerSEQ.dir/build.make CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.i
-.PHONY : HTTPDownloader.cpp.i
-
-HTTPDownloader.s: HTTPDownloader.cpp.s
-
-.PHONY : HTTPDownloader.s
-
-# target to generate assembly for a file
-HTTPDownloader.cpp.s:
-	$(MAKE) -f CMakeFiles/crawlerSEQ.dir/build.make CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.s
-.PHONY : HTTPDownloader.cpp.s
-
-main.o: main.cpp.o
-
-.PHONY : main.o
+.PHONY : crawlerParalelo.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/crawlerSEQ.dir/build.make CMakeFiles/crawlerSEQ.dir/main.cpp.o
-.PHONY : main.cpp.o
+crawlerParalelo.cpp.o:
+	$(MAKE) -f CMakeFiles/crawlerPAR.dir/build.make CMakeFiles/crawlerPAR.dir/crawlerParalelo.cpp.o
+.PHONY : crawlerParalelo.cpp.o
 
-main.i: main.cpp.i
+crawlerParalelo.i: crawlerParalelo.cpp.i
 
-.PHONY : main.i
+.PHONY : crawlerParalelo.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/crawlerSEQ.dir/build.make CMakeFiles/crawlerSEQ.dir/main.cpp.i
-.PHONY : main.cpp.i
+crawlerParalelo.cpp.i:
+	$(MAKE) -f CMakeFiles/crawlerPAR.dir/build.make CMakeFiles/crawlerPAR.dir/crawlerParalelo.cpp.i
+.PHONY : crawlerParalelo.cpp.i
 
-main.s: main.cpp.s
+crawlerParalelo.s: crawlerParalelo.cpp.s
 
-.PHONY : main.s
+.PHONY : crawlerParalelo.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/crawlerSEQ.dir/build.make CMakeFiles/crawlerSEQ.dir/main.cpp.s
-.PHONY : main.cpp.s
+crawlerParalelo.cpp.s:
+	$(MAKE) -f CMakeFiles/crawlerPAR.dir/build.make CMakeFiles/crawlerPAR.dir/crawlerParalelo.cpp.s
+.PHONY : crawlerParalelo.cpp.s
+
+crawlerSequencial.o: crawlerSequencial.cpp.o
+
+.PHONY : crawlerSequencial.o
+
+# target to build an object file
+crawlerSequencial.cpp.o:
+	$(MAKE) -f CMakeFiles/crawlerSEQ.dir/build.make CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.o
+.PHONY : crawlerSequencial.cpp.o
+
+crawlerSequencial.i: crawlerSequencial.cpp.i
+
+.PHONY : crawlerSequencial.i
+
+# target to preprocess a source file
+crawlerSequencial.cpp.i:
+	$(MAKE) -f CMakeFiles/crawlerSEQ.dir/build.make CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.i
+.PHONY : crawlerSequencial.cpp.i
+
+crawlerSequencial.s: crawlerSequencial.cpp.s
+
+.PHONY : crawlerSequencial.s
+
+# target to generate assembly for a file
+crawlerSequencial.cpp.s:
+	$(MAKE) -f CMakeFiles/crawlerSEQ.dir/build.make CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.s
+.PHONY : crawlerSequencial.cpp.s
 
 # Help Target
 help:
@@ -184,14 +197,15 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... crawlerPAR"
 	@echo "... edit_cache"
 	@echo "... crawlerSEQ"
-	@echo "... HTTPDownloader.o"
-	@echo "... HTTPDownloader.i"
-	@echo "... HTTPDownloader.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... crawlerParalelo.o"
+	@echo "... crawlerParalelo.i"
+	@echo "... crawlerParalelo.s"
+	@echo "... crawlerSequencial.o"
+	@echo "... crawlerSequencial.i"
+	@echo "... crawlerSequencial.s"
 .PHONY : help
 
 

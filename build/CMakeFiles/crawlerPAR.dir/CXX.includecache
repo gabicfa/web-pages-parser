@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/gabicfa/Documents/SuperComp/Projeto2/crawlerSequencial.cpp
+/home/gabicfa/Documents/SuperComp/Projeto2/crawlerParalelo.cpp
 iostream
 -
 string
@@ -14,6 +14,8 @@ string
 stdio.h
 -
 boost/regex.hpp
+-
+chrono
 -
 chrono
 -
@@ -25,6 +27,20 @@ curl/curlbuild.h
 -
 sstream
 -
+list
+-
+thread
+-
 fstream
+-
+semaphore.cpp
+/home/gabicfa/Documents/SuperComp/Projeto2/semaphore.cpp
+
+/home/gabicfa/Documents/SuperComp/Projeto2/semaphore.cpp
+iostream
+-
+mutex
+-
+condition_variable
 -
 

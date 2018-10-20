@@ -1,6 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/crawlerSEQ.dir/main.cpp.o"
-  "CMakeFiles/crawlerSEQ.dir/HTTPDownloader.cpp.o"
+  "CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.o"
   "crawlerSEQ.pdb"
   "crawlerSEQ"
 )

@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/gabicfa/Documents/SuperComp/Projeto2/crawlerSequencial.cpp" "/home/gabicfa/Documents/SuperComp/Projeto2/build/CMakeFiles/crawlerSEQ.dir/crawlerSequencial.cpp.o"
+  "/home/gabicfa/Documents/SuperComp/Projeto2/crawlerParalelo.cpp" "/home/gabicfa/Documents/SuperComp/Projeto2/build/CMakeFiles/crawlerPAR.dir/crawlerParalelo.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

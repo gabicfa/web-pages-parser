@@ -46,6 +46,13 @@
         "tuple": "cpp",
         "utility": "cpp",
         "list": "cpp",
-        "complex": "cpp"
+        "complex": "cpp",
+        "csignal": "cpp",
+        "cstdarg": "cpp",
+        "*.ipp": "cpp",
+        "codecvt": "cpp",
+        "condition_variable": "cpp",
+        "future": "cpp",
+        "mutex": "cpp"
     }
 }
