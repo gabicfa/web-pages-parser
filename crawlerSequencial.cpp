@@ -132,22 +132,63 @@ void collectProduct(string page, string url){
 }
 
 int main(int argc, char** argv) {
+    high_resolution_clock::time_point total1, total2;
+    duration<double> tempoTotal;
+    total1 = high_resolution_clock::now();
+
     string url = argv[1];
 
-    string currentPage = download(url);
-    int total =  totalPages(currentPage);
     vector<string> urls;
     string productPage;
     string nextPageUrl;
+
+    high_resolution_clock::time_point t1, t2, t3;
+    duration<double> ocioso;
+    duration<double> tempoProd;
+    double tempoOcioso;
+    double tempoMedioPorProduto=0;
+    double numProd=0;
+
+    t1 = high_resolution_clock::now();
+        string currentPage = download(url);
+    t2 = high_resolution_clock::now();
+    ocioso = duration_cast<duration<double> >(t2 - t1);
+    tempoOcioso = ocioso.count();
+
+    int total =  totalPages(currentPage);
 
     for(int p=1; p<=total; p++){
         cout << p << '\n';
         urls = findMatchesPages(currentPage, total, p);
         for(unsigned int u=0; u<urls.size()-1; u++){
-            productPage = download(urls[u]);
-            collectProduct(productPage, urls[u]);
+            t1 = high_resolution_clock::now();
+                    
+                productPage = download(urls[u]);
+            
+            t2 = high_resolution_clock::now();
+            ocioso = duration_cast<duration<double> >(t2 - t1);
+            tempoOcioso += ocioso.count();
+
+                collectProduct(productPage, urls[u]);
+
+            t3 = high_resolution_clock::now();
+            tempoProd = duration_cast<duration<double> >(t3 - t1);
+            cout << "Tempo gasto no produto: " << tempoProd.count() << '\n';
+            cout <<'\n';
+            tempoMedioPorProduto +=tempoProd.count();
+            numProd+=1;
         }
         nextPageUrl = urls[urls.size()-1];
-        currentPage = download(nextPageUrl);
+        t1 = high_resolution_clock::now();
+            currentPage = download(nextPageUrl);
+        t2 = high_resolution_clock::now();
+        ocioso = duration_cast<duration<double> >(t2 - t1);
+        tempoOcioso += ocioso.count();
     }
+    cout << "Tempo total ocioso: " << tempoOcioso << '\n';
+    cout << "Media de tempo gasto nos produtos: " << tempoMedioPorProduto/numProd << '\n';
+    total2 = high_resolution_clock::now();
+    tempoTotal = duration_cast<duration<double> >(total2 - total1);
+    cout << "Tempo total do program: " << tempoTotal.count() << '\n';
+
 }
