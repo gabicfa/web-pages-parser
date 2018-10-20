@@ -190,5 +190,5 @@ int main(int argc, char** argv) {
     total2 = high_resolution_clock::now();
     tempoTotal = duration_cast<duration<double> >(total2 - total1);
     cout << "Tempo total do program: " << tempoTotal.count() << '\n';
-
 }
+

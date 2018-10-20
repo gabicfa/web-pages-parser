@@ -176,7 +176,6 @@ void consumePages(list<string>& listofPages, Semaphore& accessListofPages, Semap
         tempoProd = duration_cast<duration<double> >(t2 - t1);
 
         accesstempoMedioPorProduto.acquire();
-            cout << tempoProd.count() << '\n';
             tempoMedioPorProduto = tempoMedioPorProduto + ociosoProd + tempoProd.count();
         accesstempoMedioPorProduto.release();
         
@@ -324,7 +323,6 @@ int main(int argc, char *argv[]) {
     finalJSON += "]\n";
     cout << finalJSON;
     cout << "Tempo total ocioso: " << tempoOcioso << '\n';
-    cout << "Total de produtos analisados: " << numProd << '\n'; 
     cout << "Media de Tempo por produto: " << tempoMedioPorProduto/numProd << '\n';
 
     total2 = high_resolution_clock::now();
