@@ -144,7 +144,7 @@ string collectProduct(string page){
 }
 /*FUNÇÃO prodCollectorThread - coleta uma pagina de listofPages, coleta as informações 
 desejadas e as adiciona a string global "finalJSON"*/
-void consumePages(list<string>& listofPages, Semaphore& accessListofPages, Semaphore& listofPagesCount, Semaphore& accessJSON, const string &finalJSON, bool& noMorePages, int numConsumers, Semaphore& accesstempoMedioPorProduto, double& tempoMedioPorProduto){
+void consumePages(list<string>& listofPages, Semaphore& accessListofPages, Semaphore& listofPagesCount, Semaphore& accessJSON, const string &finalJSON, bool& noMorePages, int numConsumers){
     duration<double> tempoProd;
     high_resolution_clock::time_point t1, t2;
 
@@ -185,9 +185,7 @@ void consumePages(list<string>& listofPages, Semaphore& accessListofPages, Semap
         t2 = high_resolution_clock::now();
         tempoProd = duration_cast<duration<double> >(t2 - t1);
 
-        accesstempoMedioPorProduto.acquire();
-            tempoMedioPorProduto = tempoMedioPorProduto + ociosoProd + tempoProd.count();
-        accesstempoMedioPorProduto.release();
+        cout << tempoProd.count() + ociosoProd << '\n'; //Tempo gasto no produto
         
         accessJSON.acquire();
             *tempJson = finalJSON + jsonProduct;
@@ -299,8 +297,6 @@ int main(int argc, char *argv[]) {
 
     Semaphore accesstempoOcioso(1);
     double tempoOcioso=0;
-    Semaphore accesstempoMedioPorProduto(1);
-    double tempoMedioPorProduto=0;
     double numProd=0;
 
     bool noMorePages = false;
@@ -320,7 +316,7 @@ int main(int argc, char *argv[]) {
         prodPageCollectorThread[p] = thread(producePages, std::ref(listofUrls), std::ref(accessListofUrls), std::ref(listofUrlCount), std::ref(listofPages), std::ref(accessListofPages), std::ref(listofPagesCount), std::ref(noMoreUrls), std::ref(noMorePages), numProducers, std::ref(accesstempoOcioso), std::ref(tempoOcioso));
     }
     for(int c=0; c<numConsumers; c++){
-        prodCollectorThread[c] = thread(consumePages,  std::ref(listofPages), std::ref(accessListofPages), std::ref(listofPagesCount), std::ref(accessJSON), std::ref(finalJSON), std::ref(noMorePages), numConsumers, std::ref(accesstempoMedioPorProduto), std::ref(tempoMedioPorProduto));
+        prodCollectorThread[c] = thread(consumePages,  std::ref(listofPages), std::ref(accessListofPages), std::ref(listofPagesCount), std::ref(accessJSON), std::ref(finalJSON), std::ref(noMorePages), numConsumers);
     }
 
     prodLinkCollectorThread.join();
@@ -333,11 +329,11 @@ int main(int argc, char *argv[]) {
 
     finalJSON += "]\n";
     cout << finalJSON;
-    cout << "Tempo total ocioso: " << tempoOcioso << '\n';
-    cout << "Media de Tempo por produto: " << tempoMedioPorProduto/numProd << '\n';
+    cout << tempoOcioso << '\n';
+    cout << numProd << '\n';
     total2 = high_resolution_clock::now();
     total = duration_cast<duration<double> >(total2 - total1);
-    cout << "Tempo total do program: " << total.count() << '\n';
-    
+    cout << total.count()/numProd << '\n';
+    cout << total.count() << '\n';
     return 0;
 }

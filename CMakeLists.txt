@@ -19,9 +19,9 @@ add_definitions("-Wall")
 include_directories(${SDL2_INCLUDE_DIR} ${SDL2_gfx_INCLUDE_DIR})
 
 add_executable(crawlerSEQ crawlerSequencial.cpp)
-target_link_libraries(crawlerSEQ ${SDL2_LIBRARIES} ${SDL2_gfx_LIBRARIES} "-lcurl -lboost_regex -lboost_locale")
+target_link_libraries(crawlerSEQ ${SDL2_LIBRARIES} ${SDL2_gfx_LIBRARIES} "-lcurl -lboost_regex")
 SET_TARGET_PROPERTIES(crawlerSEQ PROPERTIES COMPILE_FLAGS ${SEQ_FLAG} LINK_FLAGS ${SEQ_FLAG})
 
 add_executable(crawlerPAR crawlerParalelo.cpp)
-target_link_libraries(crawlerPAR ${SDL2_LIBRARIES} ${SDL2_gfx_LIBRARIES} "-lcurl -lboost_regex -lboost_locale -lpthread")
+target_link_libraries(crawlerPAR ${SDL2_LIBRARIES} ${SDL2_gfx_LIBRARIES} "-lcurl -lboost_regex -lpthread")
 SET_TARGET_PROPERTIES(crawlerPAR PROPERTIES COMPILE_FLAGS ${PAR_FLAG} LINK_FLAGS ${PAR_FLAG})

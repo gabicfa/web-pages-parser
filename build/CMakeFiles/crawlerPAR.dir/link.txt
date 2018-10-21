@@ -1,1 +1,0 @@
-/usr/bin/x86_64-linux-gnu-g++-5  -g  -rdynamic -O2 CMakeFiles/crawlerPAR.dir/crawlerParalelo.cpp.o  -o crawlerPAR -lSDL2 -lSDL2_gfx -lSDL2 -lcurl -lboost_regex -lboost_locale -lpthread -lSDL2_gfx -lcurl -lboost_regex -lboost_locale -lpthread 

@@ -178,7 +178,7 @@ int main(int argc, char** argv) {
 
             t3 = high_resolution_clock::now();
             tempoProd = duration_cast<duration<double> >(t3 - t1);
-            cout << "Tempo gasto no produto: " << tempoProd.count() << '\n';
+            cout << tempoProd.count() << '\n'; //Tempo gasto no produto
             cout <<'\n';
             tempoMedioPorProduto +=tempoProd.count();
             numProd+=1;
@@ -190,9 +190,10 @@ int main(int argc, char** argv) {
         ocioso = duration_cast<duration<double> >(t2 - t1);
         tempoOcioso += ocioso.count();
     }
-    cout << "Tempo total ocioso: " << tempoOcioso << '\n';
-    cout << "Media de tempo gasto nos produtos: " << tempoMedioPorProduto/numProd << '\n';
+    cout << tempoOcioso << '\n';
+    cout << numProd << '\n';
+    cout << tempoMedioPorProduto/numProd << '\n';
     total2 = high_resolution_clock::now();
     tempoTotal = duration_cast<duration<double> >(total2 - total1);
-    cout << "Tempo total do program: " << tempoTotal.count() << '\n';
+    cout << tempoTotal.count() << '\n';
 }
