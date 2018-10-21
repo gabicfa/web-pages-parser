@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <iostream>
 #include <sstream>
-#include <fstream>
 #include <string>
 #include <list>
 #include <thread>
@@ -16,11 +15,14 @@ using namespace std;
 using namespace boost;
 using namespace std::chrono;
 
+//função auxiliar para a funcao "download"
 size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp){
     ((std::string*)userp)->append((char*)contents, size * nmemb);
     return size * nmemb;
 }
 
+//Faz o download de uma pagina web a partir de sua url e retorna o seu conteúdo 
+//html em formato de string
 string download(string url) {
     CURL *curl;
     string readBuffer;
@@ -35,13 +37,15 @@ string download(string url) {
         curl_easy_perform(curl);
         curl_easy_cleanup(curl);
     }
-
     return readBuffer;
 }
 
+//Procura em uma string de entrada str uma string ditada pelo regex reg e retorna 
+//os matches, de acordo com o index desejado, pelo vetor result
 void findMatches(string str, regex reg, list<string>& result, int index){
     smatch matches;
     while(regex_search(str, matches, reg)){
+        //caso exista um match
         if(matches.size()> 0){
             result.push_back(matches[index]);
             str = matches.suffix().str(); 
@@ -49,6 +53,7 @@ void findMatches(string str, regex reg, list<string>& result, int index){
     }
 }
 
+//Busca o total de páginas de produtos daquela categoria a partir da primeira página page
 int totalPages(string page){
     list<string> lastPage;
     regex numPages("\"lastPage\":([^,]+)");
@@ -57,6 +62,8 @@ int totalPages(string page){
     return totalPages;
 }
 
+//Dado uma página de produtos page, o total de página e o número da página atual, procura 
+//as urls dos produtos presentes nela e a url para a próxima página
 list<string> findMatchesPages(string page, int totalPages, int numPag){
     list<string> urlsProducts;
     list<string> lastPage;
@@ -72,12 +79,14 @@ list<string> findMatchesPages(string page, int totalPages, int numPag){
         urlsProducts.push_back(next);
         return urlsProducts;
     }
+    //Caso seja a última página, não tem próxima página
     else{
         urlsProducts.push_back("none");
         return urlsProducts;
     }
 }
 
+//A partir da página de produto page é possivel extrair as informações necessárias 
 string collectProduct(string page){
     list<string> buffer;
 
@@ -133,12 +142,13 @@ string collectProduct(string page){
     "  },\n";
     return out;
 }
-
+/*FUNÇÃO prodCollectorThread - coleta uma pagina de listofPages, coleta as informações 
+desejadas e as adiciona a string global "finalJSON"*/
 void consumePages(list<string>& listofPages, Semaphore& accessListofPages, Semaphore& listofPagesCount, Semaphore& accessJSON, const string &finalJSON, bool& noMorePages, int numConsumers, Semaphore& accesstempoMedioPorProduto, double& tempoMedioPorProduto){
     duration<double> tempoProd;
     high_resolution_clock::time_point t1, t2;
 
-    string currentPage;
+    string currentProductPage;
     string jsonProduct;
     double ociosoProd;
     string* tempJson = const_cast<string*>(&finalJSON);
@@ -154,7 +164,7 @@ void consumePages(list<string>& listofPages, Semaphore& accessListofPages, Semap
             }
             else{
                 
-                currentPage = listofPages.front();
+                currentProductPage = listofPages.front();
                 listofPages.pop_front();
                 if(noMorePages && listofPages.empty()){
                     for(int ct=0; ct< numConsumers; ct++){
@@ -165,13 +175,13 @@ void consumePages(list<string>& listofPages, Semaphore& accessListofPages, Semap
         accessListofPages.release();
 
         regex tempoociosoprod ("DownloadTime=([^>]+)>");
-        findMatches(currentPage, tempoociosoprod, buffer, 1);
+        findMatches(currentProductPage, tempoociosoprod, buffer, 1);
         if(buffer.size()> 0){
             ociosoProd= stod(buffer.front());
         }
 
         t1 = high_resolution_clock::now();
-            jsonProduct = collectProduct(currentPage);
+            jsonProduct = collectProduct(currentProductPage);
         t2 = high_resolution_clock::now();
         tempoProd = duration_cast<duration<double> >(t2 - t1);
 
@@ -185,6 +195,8 @@ void consumePages(list<string>& listofPages, Semaphore& accessListofPages, Semap
     }
 }
 
+/*FUNÇÃO prodPageCollectorThread - Recolhe* uma url da listofUrls, faz o 
+download dela e a adicionar à listofPages*/
 void producePages(list<string>&listofUrls, Semaphore& accessListofUrls, Semaphore& listofUrlCount, list<string>&listofPages, Semaphore& accessListofPages, Semaphore& listofPagesCount, bool& noMoreUrls, bool& noMorePages, int numProducers, Semaphore& accesstempoOcioso, double& tempoOcioso){
     string currentProductUrl;
     string currentProductPage;
@@ -226,6 +238,9 @@ void producePages(list<string>&listofUrls, Semaphore& accessListofUrls, Semaphor
     noMorePages = true;
 }
 
+/*FUNÇÃO prodLinkCollectorThread -  Faz o download das páginas com os produtos, identifica as urls 
+dos produtos presentes nelas e coloca-as na listofUrls. Além disso adquire a url da pagina com 
+produtos seguinte e fazer o mesmo processo, sucessivamente, até a última página dessa categoria.*/
 void produceUrls(list<string>& listofUrls, Semaphore& accessListofUrls, Semaphore& listofUrlCount, string url, bool& noMoreUrls, Semaphore& accesstempoOcioso, double& tempoOcioso, double& numProd){
     high_resolution_clock::time_point t1, t2;
     duration<double> ocioso;
@@ -293,12 +308,8 @@ int main(int argc, char *argv[]) {
 
     string finalJSON = "[\n";
 
-    // string url = "https://www.magazineluiza.com.br/dvd-player/tv-e-video/s/et/tvdb/";
     string url = argv[1];
-    // int numProducers = 4;
     int numProducers = atoi(argv[2]);
-
-    // int numConsumers = 5;
     int numConsumers = atoi(argv[3]);
 
     thread prodPageCollectorThread[numProducers];
@@ -324,7 +335,6 @@ int main(int argc, char *argv[]) {
     cout << finalJSON;
     cout << "Tempo total ocioso: " << tempoOcioso << '\n';
     cout << "Media de Tempo por produto: " << tempoMedioPorProduto/numProd << '\n';
-
     total2 = high_resolution_clock::now();
     total = duration_cast<duration<double> >(total2 - total1);
     cout << "Tempo total do program: " << total.count() << '\n';

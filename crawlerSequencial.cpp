@@ -7,18 +7,19 @@
 #include <curl/easy.h>
 #include <curl/curlbuild.h>
 #include <sstream>
-#include <fstream>
 
 using namespace std;
 using namespace boost;
 using namespace std::chrono;
 
-size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
-{
+//função auxiliar para a funcao "download"
+size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp){
     ((std::string*)userp)->append((char*)contents, size * nmemb);
     return size * nmemb;
 }
 
+/*Faz o download de uma pagina web a partir de sua url e retorna o seu conteúdo 
+html em formato de string*/
 string download(string url) {
     CURL *curl;
     string readBuffer;
@@ -32,18 +33,16 @@ string download(string url) {
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
         curl_easy_perform(curl);
         curl_easy_cleanup(curl);
-
-        // ofstream myfile;
-        // myfile.open ("../page.txt");
-        // myfile << readBuffer;
-        // myfile.close();
     }
     return readBuffer;
 }
 
+/*Procura em uma string de entrada str uma string ditada pelo regex reg e retorna 
+os matches, de acordo com o index desejado, pelo vetor result*/
 void findMatches(string str, regex reg, vector<string>& result, int index){
     smatch matches;
     while(regex_search(str, matches, reg)){
+        //caso exista um match
         if(matches.size()> 0){
             result.push_back(matches[index]);
             str = matches.suffix().str(); 
@@ -51,6 +50,7 @@ void findMatches(string str, regex reg, vector<string>& result, int index){
     }
 }
 
+//Busca o total de páginas de produtos daquela categoria a partir da primeira página page
 int totalPages(string page){
     vector<string> lastPage;
     regex numPages("\"lastPage\":([^,]+)");
@@ -59,6 +59,8 @@ int totalPages(string page){
     return totalPages;
 }
 
+/*Dado uma página de produtos page, o total de página e o número da página atual, procura 
+as urls dos produtos presentes nela e a url para a próxima página*/
 vector<string> findMatchesPages(string page, int totalPages, int numPag){
     vector<string> urlsProducts;
     vector<string> lastPage;
@@ -73,12 +75,15 @@ vector<string> findMatchesPages(string page, int totalPages, int numPag){
         urlsProducts.push_back(lastPage[0]);
         return urlsProducts;
     }
+    //Caso seja a última página, não tem próxima página
     else{
         urlsProducts.push_back("none");
         return urlsProducts;
     }
 }
 
+/*A partir da página de produto page é possivel extrair as informações necessárias, 
+a url do produto já é informação adquirida anteriormente*/
 void collectProduct(string page, string url){
     vector<string> buffer;
 
@@ -191,4 +196,3 @@ int main(int argc, char** argv) {
     tempoTotal = duration_cast<duration<double> >(total2 - total1);
     cout << "Tempo total do program: " << tempoTotal.count() << '\n';
 }
-
