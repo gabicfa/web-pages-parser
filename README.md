@@ -18,8 +18,8 @@ A identificação de páginas de produto é feita a partir de sua categoria, ou 
 O crawler suporta as categorias de produtos do site https://www.magazineluiza.com.br/. Esses são alguns exemplos de categorias que se poderia fazer essa análise:
 
 * [DVD Player](https://www.magazineluiza.com.br/dvd-player/tv-e-video/s/et/tvdb/) - https://www.magazineluiza.com.br/dvd-player/tv-e-video/s/et/tvdb/
-* [Controle Remoto](https://www.magazineluiza.com.br/controle-remoto/tv-e-video/s/et/cmrt/) - https://www.magazineluiza.com.br/controle-remoto/tv-e-video/s/et/cmrt/)
-* [Fogão a Lenha](https://www.magazineluiza.com.br/fogao-a-lenha/eletrodomesticos/s/ed/fole/) - https://www.magazineluiza.com.br/fogao-a-lenha/eletrodomesticos/s/ed/fole/
+* [Controle Remoto](https://www.magazineluiza.com.br/controle-remoto/tv-e-video/s/et/cmrt/) - https://www.magazineluiza.com.br/controle-remoto/tv-e-video/s/et/cmrt/
+* [Roteadores](https://www.magazineluiza.com.br/roteador/informatica/s/in/rtdr/) - https://www.magazineluiza.com.br/roteador/informatica/s/in/rtdr/
 
 
 ## Pré-Requisito
@@ -27,7 +27,6 @@ O crawler suporta as categorias de produtos do site https://www.magazineluiza.co
 Para conseguir compilar esse projeto é necessário as seguintes ferramentas e bibliotecas:
 
 * [CMake](https://cmake.org/)
-* [SDL](https://www.libsdl.org/) - Pacotes SDL2 e SDL2_gfx 
 * [Boost.Regex](https://www.boost.org/doc/libs/1_66_0/libs/regex/doc/html/index.html)
 * [Libcurl](https://curl.haxx.se/libcurl/)
 
@@ -69,7 +68,8 @@ O resultado de ambos os executáveis é escrio na saída padrão no formato json
     "url": """
 }
 ```
-As últimas quatro linhas da saída são medidas de tempos para análises de rendimento, todas em segundo:
+Além disso é escrito um arquivo de saída out.txt com informações para análise de tempo
+
 ```
 tempoOcioso
 numProd
