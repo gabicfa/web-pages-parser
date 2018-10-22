@@ -7,10 +7,13 @@
 #include <curl/easy.h>
 #include <curl/curlbuild.h>
 #include <sstream>
+#include <fstream>
+// #include <cpr/cpr.h>
 
 using namespace std;
 using namespace boost;
 using namespace std::chrono;
+
 
 //função auxiliar para a funcao "download"
 size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp){
@@ -34,6 +37,15 @@ string download(string url) {
         curl_easy_perform(curl);
         curl_easy_cleanup(curl);
     }
+
+    // auto response = cpr::Get(cpr::Url{url});
+    // readBuffer = response.text;
+
+    // ofstream myfile;
+    // myfile.open ("../page.txt");
+    // myfile << readBuffer;
+    // myfile.close();
+
     return readBuffer;
 }
 
@@ -92,7 +104,7 @@ void collectProduct(string page, string url){
     string productName = buffer[0];
 
     buffer.clear();
-    regex desc("<h2 class=\"description__product-title\">([^<]+)</h2>    <p class=\"description__text\"></p>([^<]+)");
+    regex desc("<h2 class=\"description__product-title\">([^<]+)</h2>    <p class=\"description__text\"></p>([^<]+)<p");
     findMatches(page, desc, buffer, 2);
     string productDescription = buffer[0];
 
@@ -163,13 +175,12 @@ int main(int argc, char** argv) {
     int total =  totalPages(currentPage);
 
     for(int p=1; p<=total; p++){
-        cout << p << '\n';
         urls = findMatchesPages(currentPage, total, p);
         for(unsigned int u=0; u<urls.size()-1; u++){
             t1 = high_resolution_clock::now();
                     
                 productPage = download(urls[u]);
-            
+
             t2 = high_resolution_clock::now();
             ocioso = duration_cast<duration<double> >(t2 - t1);
             tempoOcioso += ocioso.count();
@@ -178,8 +189,8 @@ int main(int argc, char** argv) {
 
             t3 = high_resolution_clock::now();
             tempoProd = duration_cast<duration<double> >(t3 - t1);
-            cout << tempoProd.count() << '\n'; //Tempo gasto no produto
-            cout <<'\n';
+            // cout << tempoProd.count() << '\n'; //Tempo gasto no produto
+            // cout <<'\n';
             tempoMedioPorProduto +=tempoProd.count();
             numProd+=1;
         }
@@ -190,10 +201,16 @@ int main(int argc, char** argv) {
         ocioso = duration_cast<duration<double> >(t2 - t1);
         tempoOcioso += ocioso.count();
     }
-    cout << tempoOcioso << '\n';
-    cout << numProd << '\n';
-    cout << tempoMedioPorProduto/numProd << '\n';
+
+    ofstream myfile;
+    myfile.open ("../out.txt");
+    myfile << tempoOcioso << '\n';
+    myfile << numProd << '\n';
+
     total2 = high_resolution_clock::now();
     tempoTotal = duration_cast<duration<double> >(total2 - total1);
-    cout << tempoTotal.count() << '\n';
+
+    myfile << tempoTotal.count()/numProd << '\n';
+    myfile << tempoTotal.count() << '\n';
+    myfile.close();
 }

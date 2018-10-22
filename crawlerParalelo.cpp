@@ -9,6 +9,8 @@
 #include <curl/curl.h>
 #include <curl/easy.h>
 #include <curl/curlbuild.h>
+// #include <cpr/cpr.h>
+#include <fstream>
 #include "semaphore.cpp"
 
 using namespace std;
@@ -21,13 +23,13 @@ size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp){
     return size * nmemb;
 }
 
-//Faz o download de uma pagina web a partir de sua url e retorna o seu conteúdo 
-//html em formato de string
+/*Faz o download de uma pagina web a partir de sua url e retorna o seu conteúdo 
+html em formato de string*/
 string download(string url) {
     CURL *curl;
     string readBuffer;
-    curl = curl_easy_init();
 
+    curl = curl_easy_init();
     if(curl) {
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
         curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
@@ -37,6 +39,15 @@ string download(string url) {
         curl_easy_perform(curl);
         curl_easy_cleanup(curl);
     }
+
+    // auto response = cpr::Get(cpr::Url{url});
+    // readBuffer = response.text;
+
+    // ofstream myfile;
+    // myfile.open ("../page.txt");
+    // myfile << readBuffer;
+    // myfile.close();
+
     return readBuffer;
 }
 
@@ -329,11 +340,18 @@ int main(int argc, char *argv[]) {
 
     finalJSON += "]\n";
     cout << finalJSON;
-    cout << tempoOcioso << '\n';
-    cout << numProd << '\n';
+
+    ofstream myfile;
+    myfile.open ("../out.txt");
+    myfile << tempoOcioso << '\n';
+    myfile << numProd << '\n';
+
     total2 = high_resolution_clock::now();
     total = duration_cast<duration<double> >(total2 - total1);
-    cout << total.count()/numProd << '\n';
-    cout << total.count() << '\n';
+
+    myfile << total.count()/numProd << '\n';
+    myfile << total.count() << '\n';
+    myfile.close();
+
     return 0;
 }

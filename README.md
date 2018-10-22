@@ -36,7 +36,6 @@ Para conseguir compilar esse projeto é necessário as seguintes ferramentas e b
 Para compilar o projeto siga os seguintes passos:
 
 ```
-mkdir build
 cd build
 cmake ..
 make
