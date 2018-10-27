@@ -1,0 +1,4 @@
+/Users/gabrielaalmeida/Documents/Insper/7 semestre/SuperComp/ParsingWebPages/build/CMakeFiles/crawlerPAR.dir
+/Users/gabrielaalmeida/Documents/Insper/7 semestre/SuperComp/ParsingWebPages/build/CMakeFiles/rebuild_cache.dir
+/Users/gabrielaalmeida/Documents/Insper/7 semestre/SuperComp/ParsingWebPages/build/CMakeFiles/edit_cache.dir
+/Users/gabrielaalmeida/Documents/Insper/7 semestre/SuperComp/ParsingWebPages/build/CMakeFiles/crawlerSEQ.dir

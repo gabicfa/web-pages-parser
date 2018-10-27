@@ -104,7 +104,7 @@ void collectProduct(string page, string url){
     string productName = buffer[0];
 
     buffer.clear();
-    regex desc("<h2 class=\"description__product-title\">([^<]+)</h2>    <p class=\"description__text\"></p>([^<]+)<p");
+    regex desc("<h2 class=\"description__product-title\">([^<]+)</h2>    <p class=\"description__text\"></p>([^<]+)");
     findMatches(page, desc, buffer, 2);
     string productDescription = buffer[0];
 

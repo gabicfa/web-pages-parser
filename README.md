@@ -19,7 +19,7 @@ O crawler suporta as categorias de produtos do site https://www.magazineluiza.co
 
 * [DVD Player](https://www.magazineluiza.com.br/dvd-player/tv-e-video/s/et/tvdb/) - https://www.magazineluiza.com.br/dvd-player/tv-e-video/s/et/tvdb/
 * [Controle Remoto](https://www.magazineluiza.com.br/controle-remoto/tv-e-video/s/et/cmrt/) - https://www.magazineluiza.com.br/controle-remoto/tv-e-video/s/et/cmrt/
-* [Roteadores](https://www.magazineluiza.com.br/roteador/informatica/s/in/rtdr/) - https://www.magazineluiza.com.br/roteador/informatica/s/in/rtdr/
+* [Impressoras](https://www.magazineluiza.com.br/multifuncional-jato-de-tinta/informatica/s/in/majt/) - https://www.magazineluiza.com.br/multifuncional-jato-de-tinta/informatica/s/in/majt/
 
 
 ## Pré-Requisito

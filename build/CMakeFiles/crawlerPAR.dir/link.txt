@@ -1,0 +1,1 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   -Wl,-search_paths_first -Wl,-headerpad_max_install_names -O2 CMakeFiles/crawlerPAR.dir/crawlerParalelo.cpp.o  -o crawlerPAR -lSDL2 -lSDL2_gfx -lSDL2 -lcurl -lboost_regex -lpthread -lSDL2_gfx -lcurl -lboost_regex -lpthread 

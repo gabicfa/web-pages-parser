@@ -6,12 +6,12 @@ def out(command):
     result = run(command, stdout=PIPE, stderr=PIPE, universal_newlines=True, shell=True)
     return result.stdout
 
-os.system("cmake .")  
 os.system("make") 
-# links = ["https://www.magazineluiza.com.br/controle-remoto/tv-e-video/s/et/cmrt/", 
-# "https://www.magazineluiza.com.br/dvd-player/tv-e-video/s/et/tvdb/",
-# "https://www.magazineluiza.com.br/multifuncional-jato-de-tinta/informatica/s/in/majt/"]
-links = ["https://www.magazineluiza.com.br/roteador/informatica/s/in/rtdr/"]
+
+links = ["https://www.magazineluiza.com.br/controle-remoto/tv-e-video/s/et/cmrt/", 
+"https://www.magazineluiza.com.br/dvd-player/tv-e-video/s/et/tvdb/",
+"https://www.magazineluiza.com.br/multifuncional-jato-de-tinta/informatica/s/in/majt/"]
+
 t_ocioso_par_5_2 = []
 t_medProd_par_5_2 = []
 t_total_par_5_2 = []
