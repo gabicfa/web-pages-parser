@@ -1,38 +1,37 @@
-# ParsingWebPages
+# Web Pages Parser
 
-Para o segundo projeto de super computação trabalhou-se com um problema em que concorrência tem um papel fundamental na obtenção de bom desempenho: download e análise de páginas web. Criou-se um crawler que identifica páginas de produtos em um site de e-commerce e extrai as informações básicas dos produtos.
-Dada uma página de exibição de produto, o web crawler extrai as seguintes informações:
+For Insper's Supercomputing module's firs project, we worked with a problem in which concurrency plays a fundamental role in achieving good performance: downloading and analyzing web pages. For this study, a crawler that identifies product pages on an e-commerce site and extracts basic product information was created. 
+Given a product display page, the web crawler extracts the following information:
 
-1. nome do produto
-2. descrição do produto
-3. url da foto do produto
-4. preço à vista 
-5. preço parcelado
-6. categoria do produto
-7. url da página de axibição
+1. product name
+2. product description
+3. product photo url
+4. spot price
+5. installment price
+6. product category
+7. display page url
 
-A identificação de páginas de produto é feita a partir de sua categoria, ou seja, o crawler desenvolvido é apontado para uma página com os produtos de uma categoria, e ele consegue obter as páginas de produto, lindando com possíveis paginação da listagem.
+The identification of product pages is made based on their category, which means that the developed crawler is pointed to a page with the products' category and manages to obtain the product pages, dealing with possible listing pagination.
 
-## URLs Suportadas
+## Possible URLs
 
-O crawler suporta as categorias de produtos do site https://www.magazineluiza.com.br/. Esses são alguns exemplos de categorias que se poderia fazer essa análise:
+The crawler supports product categories from the website https://www.magazineluiza.com.br/. These are some examples of categories that could be done in this analysis:
 
 * [DVD Player](https://www.magazineluiza.com.br/dvd-player/tv-e-video/s/et/tvdb/) - https://www.magazineluiza.com.br/dvd-player/tv-e-video/s/et/tvdb/
-* [Controle Remoto](https://www.magazineluiza.com.br/controle-remoto/tv-e-video/s/et/cmrt/) - https://www.magazineluiza.com.br/controle-remoto/tv-e-video/s/et/cmrt/
+* [Remote Control](https://www.magazineluiza.com.br/controle-remoto/tv-e-video/s/et/cmrt/) - https://www.magazineluiza.com.br/controle-remoto/tv-e-video/s/et/cmrt/
 * [Impressoras](https://www.magazineluiza.com.br/multifuncional-jato-de-tinta/informatica/s/in/majt/) - https://www.magazineluiza.com.br/multifuncional-jato-de-tinta/informatica/s/in/majt/
 
 
-## Pré-Requisito
-
-Para conseguir compilar esse projeto é necessário as seguintes ferramentas e bibliotecas:
+## Prerequisites
+To be able to compile this project, the following tools and libraries are needed:
 
 * [CMake](https://cmake.org/)
 * [Boost.Regex](https://www.boost.org/doc/libs/1_66_0/libs/regex/doc/html/index.html)
 * [Libcurl](https://curl.haxx.se/libcurl/)
 
-## Compilação
+## Compilation
 
-Para compilar o projeto siga os seguintes passos:
+Follow these steps to compile the project :
 
 ```
 cd build
@@ -40,21 +39,22 @@ cmake ..
 make
 ```
 
-## Rodando o programa
 
-Dentro da pasta _build_, após a compilação é possível rodar a versão sequencial com o seguinte comando:
+## Running the program
+
+Inside the _build_ folder, after the compilation, it is possible to run the sequential version with the following command:
 ```
 ./crawlerSEQ url_da_listagem_por_categoria
 ```
-Também é possível rodar a versão paralela com o seguinte comando: 
+It is also possible to run the parallel version with the following command:
 ```
 ./crawlerPAR url_da_listagem_por_categoria numProducers numConsumers
 ```
-No qual numProducers é o número de threads do tipo "produtores", ou seja, as que irão fazer os downloads das páginas, e numConsumers é o numero de threads do tipo "consumidores", as que irão fazer a análise das páginas.
+In which numProducers is the number of threads of type "producers," the ones downloading the pages, and numConsumers is the number of threads of type "consumers," the ones analyzing the pages.
 
-### Output do Programa
+### Program Output
 
-O resultado de ambos os executáveis é escrio na saída padrão no formato json. Cada produto é um objeto com os seguintes campos: 
+The output of all executables is written in a standard JSON format. Each product is an object with the following fields:
 
 ```
 {
@@ -68,7 +68,7 @@ O resultado de ambos os executáveis é escrio na saída padrão no formato json
     "url": """
 }
 ```
-Além disso é escrito um arquivo de saída out.txt com informações para análise de tempo
+In addition, an out.txt output file is written with information for time analysis.
 
 ```
 tempoOcioso
@@ -76,4 +76,4 @@ numProd
 tempoMedioPorProduto
 tempoTotal 
 ```
-tempoOcioso é o tempo total gasto esperando o download de páginas web, numProd é o número total de produtos analisados, tempoMedioPorProduto o tempo total de execução do programa dividido pelo total de produtos analisados e tempoTotal é o tempo total de execução do do programa.
+tempoOcioso is the total time spent waiting for the web pages to download, numProd is the total number of analyzed products, tempoMedioPorProduto is the total program execution time divided by the total analyzed products, and tempoTotal is the total program execution time
